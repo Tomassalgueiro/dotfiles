@@ -1,0 +1,16 @@
+To have the cpu config with the bars design:
+  "cpu": {
+    "interval": 1,
+    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "ghostty -e htop"
+  },
+
+
+"custom/pomodoro": {
+   "format": "{} ",
+   "return-type": "json",
+    "exec": "waybar-module-pomodoro --no-work-icons",
+    "on-click": "waybar-module-pomodoro toggle",
+    "on-right-click": "waybar-module-pomodoro reset",
+}

@@ -1,0 +1,6 @@
+exec_always --no-startup-id autotiling
+exec_always --no-stratup-id /home/guinhas/mako/build/mako
+
+#exec_always swaybg -i ~/Wallpaper/wallpaper.png -m fill
+
+exec bash -c 'while true; do ~/.config/sway/scripts/random-wallpaper.sh; sleep 1800; done'
