@@ -13,14 +13,16 @@
   "modules-center": ["clock"],
 
   "modules-right": [
-    "custom/pomodoro",
     "bluetooth",
     "network",
     "pulseaudio", 
     "backlight",
     "battery",
+    "custom/notifications",
     "custom/wlogout"
   ],
+  
+  
 
   "sway/workspaces": {
         "on-click": "activate",
@@ -128,15 +130,26 @@
   "custom/wlogout": {
   "tooltip": false,
   "on-click": "/home/guinhas/.config/rofi/powermenu.sh",
-  "format" : "⏾",
+  "format" : "⏾"
   },
 
-  "custom/pomodoro": {
-	"format": "{}",
-	"return-type": "json",
-	"exec": "waybar-module-pomodoro --no-work-icons",
-	"on-click": "waybar-module-pomodoro toggle",
-	"on-click-right": "waybar-module-pomodoro reset",
-  },
+  "custom/notifications":{
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": " ",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": " ",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": " ",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": " "
+        },
+        "return-type": "json",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+  }
 
 }

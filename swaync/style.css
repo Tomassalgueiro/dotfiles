@@ -1,0 +1,303 @@
+ /* Tokyo Night Storm Palette */
+
+@define-color cc-bg #24283b;            /* Background */
+
+@define-color noti-bg #1a1b26;          /* Darker Background */
+
+@define-color noti-bg-darker #16161e;   /* Deepest Background */
+
+@define-color border-blue #7aa2f7;      /* Primary Blue */
+
+@define-color border-purple #bb9af7;    /* Primary Purple */
+
+@define-color text-color #c0caf5;       /* Main Foreground */
+
+@define-color text-muted #565f89;       /* Muted Text */
+
+@define-color red-base #f7768e;         /* Red/Pink */
+
+@define-color green-base #9ece6a;       /* Green */
+
+@define-color teal-base #7dcfff;        /* Cyan/Teal */
+
+@define-color yellow-base #e0af68;      /* Yellow/Orange */
+
+
+* {
+
+  font-family: "JetBrainsMono NFM SemiBold", monospace;
+  border-radius: 12px;
+  background: transparent;
+	  transition: all 0.2s ease-in-out;
+  font-size: 12px;
+
+}
+
+scrollbar {
+  background: transparent;
+  width: 0px;
+	  opacity: 0;
+}
+
+
+/* Control Center Window */
+
+.control-center {
+
+  background: @cc-bg;
+
+  border: 2px solid #6046ad; /* Purple border for the main panel */
+
+  border-radius: 10px;
+
+}
+
+
+
+/* --- WIDGETS --- */
+
+
+/* Title Widget */
+
+.widget-title {
+
+  color: @teal-base;
+
+  background: @noti-bg-darker;
+
+  padding: 10px;
+
+  margin: 10px;
+
+  border-bottom: 1px solid @border-blue;
+
+  border-radius: 10px;
+
+}
+
+
+.widget-title > button {
+
+  color: @text-color;
+
+  background: @noti-bg;
+
+  border: 1px solid @border-blue;
+
+}
+
+
+.widget-title > button:hover {
+
+  background: @red-base;
+
+  color: @noti-bg-darker;
+
+  border-color: @red-base;
+
+}
+
+
+/* DnD, Volume, Backlight Labels/Boxes */
+
+.widget-dnd, .widget-volume, .widget-backlight {
+
+  background: @noti-bg-darker;
+
+  padding: 10px;
+
+  margin: 5px 10px;
+
+  color: @border-blue;
+
+  border-radius: 10px;
+
+}
+
+.widget-volume label , .widget-backlight label{
+
+  font-size: 24px;
+
+}
+/* Switch styling (DnD) */
+
+.widget-dnd > switch {
+
+  background: @noti-bg;
+
+  border: 1px solid @border-blue;
+
+}
+
+
+.widget-dnd > switch:checked {
+
+  background: @green-base;
+  border-color: @green-base;
+
+}
+.widget-dnd > switch slider {
+  background: @text-color;
+  border-radius: 50%;
+  margin: 2px;
+  min-width: 16px;
+  min-height: 16px;
+}
+
+/* Optional: Make the knob darker when active to pop against the green */
+.widget-dnd > switch:checked slider {
+  background: @noti-bg-darker;
+}
+
+/* Slider/Scale Styling */
+
+scale highlight {
+
+  background: @border-blue;
+
+}
+
+
+scale trough {
+
+  background: @noti-bg;
+
+  border: 1px solid @text-muted;
+
+}
+
+
+/* --- NOTIFICATIONS --- */
+
+
+.notification {
+
+  background: @noti-bg;
+
+  border: 1px solid @border-blue;
+
+  margin: 8px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+}
+
+
+/* Summary is the Title of the notification */
+
+.summary {
+
+  font-size: 16px;
+
+  color: @border-purple; /* Signature Purple for titles */
+
+}
+
+
+.body {
+
+  font-size: 14px;
+
+  color: @text-color;
+
+}
+
+
+.time {
+
+  color: @text-muted;
+
+  margin-right: 10px;
+
+}
+
+
+/* Close Button */
+
+.close-button {
+
+  background: @red-base;
+
+  color: @noti-bg-darker;
+
+  margin-top: 2px;
+
+  margin-right: 2px;
+
+  border-radius: 10px;
+
+}
+
+
+.close-button:hover {
+
+  background: @yellow-base;
+
+}
+
+
+/* Actions inside notifications */
+
+.notification-action {
+
+  border: 1px solid @border-blue;
+
+  background: @noti-bg-darker;
+
+  color: @text-color;
+
+}
+
+
+.notification-action:hover {
+
+  background: @border-blue;
+
+  color: @noti-bg-darker;
+
+}
+
+
+/* Fix for the yellowish hover on the notification app-header */
+
+.notification-default-action,
+
+.notification-action {
+
+  background: transparent;
+
+}
+
+
+.notification-default-action:hover {
+
+  /* Set to your Tokyo Night background or a subtle highlight */
+
+  background: @noti-bg-darker;
+
+  /* Ensures no weird yellowish tint */
+
+  box-shadow: none;
+
+  outline: none;
+
+}
+
+
+/* Specifically targets the header area if it's still being stubborn */
+
+.header {
+
+  background: transparent;
+
+}
+
+
+.header:hover {
+
+  background: transparent;
+
+}
+

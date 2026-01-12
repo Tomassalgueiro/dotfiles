@@ -79,7 +79,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		swaylock-fancy -gpf Iosevka-NF-Medium -- scrot -z
+		hyprlock &
         ;;
     $suspend)
 		run_cmd --suspend

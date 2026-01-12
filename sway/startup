@@ -1,6 +1,8 @@
 exec_always --no-startup-id autotiling
-exec_always --no-stratup-id /home/guinhas/mako/build/mako
+exec_always --no-startup-id swaync
 
 #exec_always swaybg -i ~/Wallpaper/wallpaper.png -m fill
 
-exec bash -c 'while true; do ~/.config/sway/scripts/random-wallpaper.sh; sleep 1800; done'
+exec ~/.config/sway/scripts/random-wallpaper.sh
+
+#exec awww-daemon #in case i want to remove this remember to remove file from /usr/local/bin/awww-daemon and awww

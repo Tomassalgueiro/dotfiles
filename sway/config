@@ -58,11 +58,16 @@ set $menu $rofi_cmd -show combi -combi-modes drun
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 	
-  exec pkill -f swayidle; swayidle -w \
-        timeout 300 'swaylock-fancy -gpf Iosevka-NF-Medium -- scrot -z' \
-        timeout 600 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock-fancy -gpf Iosevka-NF-Medium -- scrot -z'
+ exec swayidle -w \
+	      timeout 270 'swaymsg exec notify-send -u normal -a Sway "PC is gonna Lock soon"' \
+              timeout 300 'swaymsg exec hyprlock' \
+              timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+              timeout 900 'swaymsg exec systemctl suspend' \
+              before-sleep 'swaymsg exec hyprlock' 
+
+# might be useful for hyprlock sleep dependicies someday
+# hyprlock & sleep 0.5 && systemctl suspend
+
 ### Input configuration
 #
 # Example configuration:
@@ -135,6 +140,13 @@ set $menu $rofi_cmd -show combi -combi-modes drun
     bindsym $mod+p exec killall -SIGUSR1 waybar 
     bindsym $mod+o exec thunar
     bindsym $mod+i exec firefox 
+
+    #Keybinds for printscreen - Thanks to u/jratliff1    
+    #Capture full screen
+    bindsym Shift+Print exec grimshot copy output
+    bindsym Shift+Alt+Print exec grimshot copy active
+    bindsym Shift+Ctrl+Print exec grimshot copy area
+
 
 #
 # Moving around:
@@ -270,6 +282,7 @@ bindsym $mod+r mode "resize"
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
+
+#important includes
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 include ~/.config/sway/startup
-
