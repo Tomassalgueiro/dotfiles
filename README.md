@@ -24,8 +24,8 @@ Main apps:
 
 #### Some important extra notices:
 - Some time after this repo has been created I changed some options, the images are the old ones and the old configs are usually in a .bak file or in a old/ folder
-- Sway does note have a default autotilling option, right now I'm using [this one](https://github.com/nwg-piotr/autotiling) 
-~~- There's a script chaging the wallpaper every 30 mins on sway/startup, hyprlock wallpaper changes accordingly.~~
+- Sway does not have a default autotilling option, right now I'm using [this one](https://github.com/nwg-piotr/autotiling)
+- ~~There's a script chaging the wallpaper every 30 mins on sway/startup, hyprlock wallpaper changes accordingly.~~
 - Powermenu (check image 3) is written using rofi and a shell script.
 - Added a new window search setting using rofi window ( press super + tab )
 - Some waybar elements are clickable (WIP for more) 
