@@ -28,11 +28,14 @@ foreground = "#a9b1d6"
 [window]
 padding = { x = 4 , y = 1 }
 opacity = 0.85
-title = "a minha faca tem knockback"
-dynamic_title = false
+#title = "a minha faca tem knockback"
+dynamic_title = true
 position = { x = 540, y = 170 }
 
 [font]
+# Iosveka NFM
+# JetBrainsMono NFM
+# CaskaydiaCove NFM
 normal = { family = "Iosevka NFM" , style = "Medium" }
 bold = { family = "Iosevka NFM", style = "Heavy" }
 size = 13

@@ -14,3 +14,11 @@ To have the cpu config with the bars design:
     "on-click": "waybar-module-pomodoro toggle",
     "on-right-click": "waybar-module-pomodoro reset",
 }
+
+"custom/status-squares": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/and-on-the-seventh-day-he-commited.sh",
+    "interval": 360,
+    "tooltip": false
+  },

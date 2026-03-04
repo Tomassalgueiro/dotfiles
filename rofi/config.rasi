@@ -1,5 +1,6 @@
 configuration {
-    modes: "window,run,ssh,drun";
+    //modes: "window,run,ssh,drun";
+    modes: "drun,ssh";
     sorting-method: "normal";
     show-icons:true;
     matching: "regex";
