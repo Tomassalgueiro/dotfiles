@@ -1,7 +1,7 @@
 @import "tokyonight.css"; 
 
 * {
-  font-family: 'JetBrainsMono Nerd Font', sans-serif;
+  font-family: 'JetBrains Mono', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
   font-size: 16px;
   min-height: 0;
   padding: 0;
@@ -73,15 +73,3 @@
   color: #c6d0f5;
 }
 
-#battery.critical {
-  color: #e74c3c;
-}
-
-
-#battery.charging {
-  color: #2ecc71;
-}
-
-#battery.plugged {
-  color: #2ecc71;
-}

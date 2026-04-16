@@ -10,6 +10,7 @@ anchor=top-right
 
 background-color=#24283b
 text-color=#cdd6f4
+progress-color= over #B97CDE33
 width=300
 height=140
 

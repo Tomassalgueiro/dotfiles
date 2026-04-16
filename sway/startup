@@ -1,7 +1,9 @@
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id swaync
+exec_always --no-startup-id mako
 
-exec_always swaybg -i ~/Wallpaper/wallpaper.png -m fill
+
+exec --no-startup-id foot --server
+exec swaybg -i ~/Wallpaper/wallhaven-zmjygw_1920x1080.png -m fill
 
 #exec ~/.config/sway/scripts/random-wallpaper.sh
 

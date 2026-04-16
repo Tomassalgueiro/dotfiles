@@ -39,6 +39,7 @@ position = { x = 540, y = 170 }
 normal = { family = "Iosevka NFM" , style = "Medium" }
 bold = { family = "Iosevka NFM", style = "Heavy" }
 size = 13
+offset = { x = 0, y = 0 }
 
 [cursor]
 style = { shape = "Block", blinking = "On" }

@@ -10,11 +10,11 @@
 
 
   "modules-right": [
-    "network",
-    "bluetooth",
+    "memory",
     "backlight",
     "pulseaudio",
     "battery",
+    "network",
     "custom/separator",
     "clock",
   ],
@@ -32,17 +32,16 @@
 
   "clock": {
     "timezone": "Europe/Lisbon",
-    "tooltip": true,
-    "format": "{:%a, %d - %H:%M}", 
-    "tooltip-format": "{:%A, %d %B %Y, %H:%M:%S}",
-    "interval": 10,
+    "tooltip": false,
+    "format": "{:%a, %d - %H:%M}",
+    "interval": 1,
     "on-click": "alacritty -e fish -c 'cal -y; exec fish'",
   },
 
   "network": {
-    "format-wifi": "󰤥 ",
-    "format-ethernet": "<span color='#9ece6a'>󰈁 </span>",
-    "format-disconnected": "<span color='#ff5555'>󰤮 </span>",
+    "format-wifi": "<span color='#9ece6a'>conn</span>",
+    "format-ethernet": "<span color='#9ece6a'>conn</span>",
+    "format-disconnected": "<span color='#ff5555'>disc</span>",
     "interval": 5,
     "tooltip-format": "{essid} ({signalStrength}%)",
     "on-click": "alacritty -e nmtui"
@@ -58,21 +57,14 @@
 
   
   "backlight": {
-        "format": "{icon}",	
-	"tooltip": true,
-	"tooltip-format": "Brightness: {percent}%",
-	"format-icons": ["󰃞 ", "󰃟 ", "󰃠 "]
+        "format": "<span color='#ff9e64'>bright:</span> {percent}%",
+        "tooltip": false
   },
   
   "pulseaudio": {
-    "format": "{icon}",
-    "format-muted": " ",
-    "format-icons": {
-      "default": [" ", " ", " "]
-    },
-    "on-click": "pavucontrol",
-    "tooltip": true,
-    "tooltip-format": "Volume: {volume}%",
+    "format": "<span color='#f7768e'>vol:</span> {volume}%",
+    "format-muted": "<span color='#f7768e'>muted</span>",
+    "on-click": "pavucontrol"
   },
 
   "battery": {
@@ -86,18 +78,10 @@
 		"on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
 		"on-charging-100": "notify-send -u normal 'Battery Full!'"
         },
-	"format": "{icon}",
-        "format-charging": "󰂄",
-        "format-plugged": "󰂄",
-        "format-full": "󰁹",
-	"format-warning":"󱈸󰁼",
-	"format-critical":"󰂃",
-	"tooltip": true,
-	"tooltip-format": "Battery: {capacity}%",
-	"format-icons": ["󰁺","󰁼","󰁾","󰂀","󰂂"],
-	"format-icons-charging": [ ],
+	"format": "<span color='#f9c74f'>bat (d):</span> {capacity}%",
+        "format-charging": "<span color='#73daca'>bat (c):</span> {capacity}%",
+        "format-full": "<span color='#73daca'>bat (c):</span> {capacity}%",
   },
-
   
   "custom/separator": {
     	"format": "|",
@@ -108,20 +92,5 @@
 	"hidden-icons": {
 	  "network": true
 	}
-  },
-
-  "bluetooth": {
-    "format": "󰂲 ",
-    "format-on": "{icon}",
-    "format-off": "{icon}", 
-    "format-connected":"{icon}",
-    "format-icons":{
-        "on":"󰂯 ",
-        "off": "󰂲 ",
-        "connected": "󰂰 ",
-        },
-    "on-click": "alacritty -e bluetui",
-    "on-click-right": "~/.config/waybar/scripts/bluetooth_off_and_on.sh",
-    "tooltip-format-connected":"{device_enumerate}"
-  },
+  }
 }

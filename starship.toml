@@ -10,6 +10,7 @@ $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
 $nodejs\
+$python\
 $rust\
 $golang\
 $php\
@@ -64,3 +65,11 @@ disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+
+[python]
+detect_extensions = []
+detect_files = []
+detect_folders = []
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($virtualenv) ](fg:#769ff0 bg:#212736)]($style)'

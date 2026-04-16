@@ -21,7 +21,8 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # Recommends: foot
-set $term alacritty
+set $term footclient 
+#set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -90,11 +91,8 @@ set $window $rofi_cmd -show window
 	seat * xcursor_theme $cursor_theme 22
 
 	#Gaps and borders
-	gaps inner 5
-	gaps top 5
-	gaps left 3
-	gaps right 3
-	gaps bottom 5
+	gaps inner 4
+	gaps outer 0
 	default_border pixel 3
 	default_floating_border pixel 2
 	client.focused		#6046ad #00000000 #00000000 #6046ad #6046ad
