@@ -9,14 +9,13 @@ M.items = {
 }
 
 function M.names()
-  -- Hardcoded return to completely bypass the crashing loop
-  return { 
-    "gruber-darker", 
-    "tokyonight", 
-    "catppuccin", 
-    "kanagawa", 
-    "gruvbox" 
-  }
+  local names = {}
+  for _, item in ipairs(M.items) do
+    if item.schemes then
+      vim.list_extend(names, item.schemes)
+    end
+  end
+  return names
 end
 
 return M
