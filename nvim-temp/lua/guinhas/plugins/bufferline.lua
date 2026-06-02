@@ -48,20 +48,20 @@ return {
 			local selected_fg = (tabline_sel and tabline_sel.fg) or normal.fg
 
 			return {
-				background = { bg = base_bg, fg = base_fg },
-				buffer = { bg = base_bg, fg = base_fg },
-				buffer_visible = { bg = base_bg },
-				buffer_selected = { bg = selected_bg, fg = selected_fg, bold = true },
-				duplicate = { bg = base_bg, fg = base_fg },
-				duplicate_visible = { bg = base_bg, fg = base_fg },
-				duplicate_selected = { bg = selected_bg, fg = selected_fg, bold = true },
-				modified = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg },
-				modified_visible = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg },
-				modified_selected = { bg = selected_bg, fg = fg_or_nil("DiagnosticWarn") or selected_fg },
-				separator = { bg = base_bg, fg = base_bg },
-				separator_visible = { bg = base_bg, fg = base_bg },
-				separator_selected = { bg = selected_bg, fg = selected_bg },
-				indicator_selected = { bg = selected_bg, fg = fg_or_nil("Special") or selected_fg },
+				background = { bg = base_bg, fg = base_fg, default = false },
+				buffer = { bg = base_bg, fg = base_fg, default = false },
+				buffer_visible = { bg = base_bg, default = false },
+				buffer_selected = { bg = selected_bg, fg = selected_fg, bold = true, default = false },
+				duplicate = { bg = base_bg, fg = base_fg, default = false },
+				duplicate_visible = { bg = base_bg, fg = base_fg, default = false },
+				duplicate_selected = { bg = selected_bg, fg = selected_fg, bold = true, default = false },
+				modified = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg, default = false },
+				modified_visible = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg, default = false },
+				modified_selected = { bg = selected_bg, fg = fg_or_nil("DiagnosticWarn") or selected_fg, default = false },
+				separator = { bg = base_bg, fg = base_bg, default = false },
+				separator_visible = { bg = base_bg, fg = base_bg, default = false },
+				separator_selected = { bg = selected_bg, fg = selected_bg, default = false },
+				indicator_selected = { bg = selected_bg, fg = fg_or_nil("Special") or selected_fg, default = false },
 			}
 		end
 
