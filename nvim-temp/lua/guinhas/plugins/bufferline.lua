@@ -72,6 +72,14 @@ return {
 					}
             			},
 			},
+			highlights = {
+				buffer_selected = {
+					italic = false,
+				},
+				duplicate_selected = {
+					italic = false,
+				},
+			},
 		}
 
 		bufferline.setup(options)
