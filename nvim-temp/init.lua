@@ -2,6 +2,8 @@ require("guinhas.core")
 require("guinhas.lazy")
 
 
+require'nvim-treesitter'.install { 'html', 'javascript', 'python' }
+
 local autocmd = vim.api.nvim_create_autocmd
 local guinhasGroup = vim.api.nvim_create_augroup("Guinhas", {}) 
 
