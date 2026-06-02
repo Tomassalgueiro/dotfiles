@@ -49,6 +49,7 @@ return {
 
 			return {
 				background = { bg = base_bg, fg = base_fg },
+				buffer = { bg = base_bg, fg = base_fg },
 				buffer_visible = { bg = base_bg },
 				buffer_selected = { bg = selected_bg, fg = selected_fg, bold = true },
 				duplicate = { bg = base_bg, fg = base_fg },
