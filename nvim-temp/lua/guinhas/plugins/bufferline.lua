@@ -7,14 +7,7 @@ return {
 		local bufferline = require("bufferline")
 
 		local function hl(name)
-			local value = vim.api.nvim_get_hl(0, { name = name, link = false })
-			if value then
-				return {
-					bg = value.bg and string.format("#%06x", value.bg) or nil,
-					fg = value.fg and string.format("#%06x", value.fg) or nil,
-				}
-			end
-			return nil
+			return vim.api.nvim_get_hl(0, { name = name, link = false })
 		end
 
 		local function fg_or_nil(group)
@@ -33,13 +26,13 @@ return {
 			end
 		end
 
-		local function get_highlights()
+		local function sync_tab_highlights()
 			local normal = hl("Normal")
 			local tabline = hl("TabLine")
 			local tabline_sel = hl("TabLineSel")
 
 			if not normal then
-				return {}
+				return
 			end
 
 			local base_bg = (tabline and tabline.bg) or normal.bg
@@ -47,22 +40,19 @@ return {
 			local selected_bg = (tabline_sel and tabline_sel.bg) or normal.bg or base_bg
 			local selected_fg = (tabline_sel and tabline_sel.fg) or normal.fg
 
-			return {
-				background = { bg = base_bg, fg = base_fg, default = false },
-				buffer = { bg = base_bg, fg = base_fg, default = false },
-				buffer_visible = { bg = base_bg, default = false },
-				buffer_selected = { bg = selected_bg, fg = selected_fg, bold = true, default = false },
-				duplicate = { bg = base_bg, fg = base_fg, default = false },
-				duplicate_visible = { bg = base_bg, fg = base_fg, default = false },
-				duplicate_selected = { bg = selected_bg, fg = selected_fg, bold = true, default = false },
-				modified = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg, default = false },
-				modified_visible = { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg, default = false },
-				modified_selected = { bg = selected_bg, fg = fg_or_nil("DiagnosticWarn") or selected_fg, default = false },
-				separator = { bg = base_bg, fg = base_bg, default = false },
-				separator_visible = { bg = base_bg, fg = base_bg, default = false },
-				separator_selected = { bg = selected_bg, fg = selected_bg, default = false },
-				indicator_selected = { bg = selected_bg, fg = fg_or_nil("Special") or selected_fg, default = false },
-			}
+	--		vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = base_bg, fg = base_fg })
+	--		vim.api.nvim_set_hl(0, "BufferLineBufferVisible", { bg = base_bg })
+	--		vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { bg = selected_bg, fg = selected_fg, bold = true })
+	--		vim.api.nvim_set_hl(0, "BufferLineDuplicate", { bg = base_bg, fg = base_fg })
+	--		vim.api.nvim_set_hl(0, "BufferLineDuplicateVisible", { bg = base_bg, fg = base_fg })
+	--		vim.api.nvim_set_hl(0, "BufferLineDuplicateSelected", { bg = selected_bg, fg = selected_fg, bold = true })
+	--		vim.api.nvim_set_hl(0, "BufferLineModified", { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg })
+	--		vim.api.nvim_set_hl(0, "BufferLineModifiedVisible", { bg = base_bg, fg = fg_or_nil("DiagnosticWarn") or base_fg })
+	--		vim.api.nvim_set_hl(0, "BufferLineModifiedSelected", { bg = selected_bg, fg = fg_or_nil("DiagnosticWarn") or selected_fg })
+			vim.api.nvim_set_hl(0, "BufferLineSeparator", { bg = base_bg, fg = base_bg })
+			vim.api.nvim_set_hl(0, "BufferLineSeparatorVisible", { bg = base_bg, fg = base_bg })
+			vim.api.nvim_set_hl(0, "BufferLineSeparatorSelected", { bg = selected_bg, fg = selected_bg })
+			vim.api.nvim_set_hl(0, "BufferLineIndicatorSelected", { bg = selected_bg, fg = fg_or_nil("Special") or selected_fg })
 		end
 
 		local options = {
@@ -75,27 +65,26 @@ return {
 				show_close_icon = false,
 				offsets = {
 					{
-						filetype = "NvimTree",
-						text = "Choose a File",
-						text_align = "center",
-						separator = true,
-					},
-				},
+					    filetype = "NvimTree",
+					    text = "Choose a File",
+					    text_align = "center",
+					    separator = true
+					}
+            			},
 			},
 		}
 
-		local function render()
-			local highlights = get_highlights()
-			local final_options = vim.tbl_deep_extend("force", options, { highlights = highlights })
-			bufferline.setup(final_options)
-			sync_fill_highlight()
-		end
-
-		render()
+		bufferline.setup(options)
+		sync_fill_highlight()
+		sync_tab_highlights()
 
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			group = vim.api.nvim_create_augroup("GuinhasBufferline", { clear = true }),
-			callback = render,
+			callback = function()
+				bufferline.setup(options)
+				sync_fill_highlight()
+				sync_tab_highlights()
+			end,
 		})
 
 		-- Keymaps
