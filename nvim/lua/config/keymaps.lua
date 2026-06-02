@@ -1,5 +1,0 @@
-vim.keymap.set('n', '<leader>', '<nop>')
-vim.keymap.set('n', '<leader>w', ":write<CR>")
-vim.keymap.set('n', '<leader>q', ":quit<CR>")
-vim.keymap.set('n', '<leader>bj', ":BlackJackNewGame<CR>")
-vim.keymap.set('n', '<leader>bq', ":BlackJackQuit<CR>")
