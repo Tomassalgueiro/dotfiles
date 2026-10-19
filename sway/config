@@ -63,14 +63,10 @@ set $window $rofi_cmd -show window
 # resumed. It will also lock your screen before your computer goes to sleep.
 	
  exec swayidle -w \
-	      timeout 270 'swaymsg exec notify-send -u normal -a Sway "PC is gonna Lock soon"' \
               timeout 300 'swaymsg exec hyprlock' \
               timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
               timeout 900 'swaymsg exec systemctl suspend' \
               before-sleep 'swaymsg exec hyprlock' 
-
-# might be useful for hyprlock sleep dependicies someday
-# hyprlock & sleep 0.5 && systemctl suspend
 
 ### Input configuration
 #
@@ -87,12 +83,19 @@ set $window $rofi_cmd -show window
 ## Read `man 5 sway-input` for more information about this section.
 
 	#Cursor
-	set $cursor_theme Bibata-Modern-Classic
-	seat * xcursor_theme $cursor_theme 22
+	set $cursor_theme Mocu-White-Right 
+	set $cursor_size 26
+
+	seat * xcursor_theme $cursor_theme $cursor_size
+
+	exec_always {
+	    export XCURSOR_THEME=$cursor_theme
+	    export XCURSOR_SIZE=$cursor_size
+	}
 
 	#Gaps and borders
 	gaps inner 4
-	gaps outer 0
+	gaps outer -4
 	default_border pixel 3
 	default_floating_border pixel 2
 	client.focused		#6046ad #00000000 #00000000 #6046ad #6046ad
@@ -125,18 +128,38 @@ set $window $rofi_cmd -show window
 
     # Exit sway (logs you out of your Wayland session)
     #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    #powermenu
     bindsym $mod+Shift+e exec $HOME/.config/rofi/powermenu.sh 
+
+    #clipboard history
+    bindsym $mod+t exec $HOME/.config/rofi/clipboard-history.sh 
 
     #Show and hide waybar
     bindsym $mod+p exec killall -SIGUSR1 waybar 
-    bindsym $mod+o exec thunar
-    bindsym $mod+i exec firefox 
+    #Open file manager
+    bindsym $mod+q exec nautilus 
+    #Open firefox
+    bindsym $mod+w exec firefox 
+    #Open emacs
+    bindsym $mod+e exec emacsclient -c -a ""
+    # Zoom app LOL
+    bindsym $mod+Shift+b exec grim - | wayland-boomer
+
+    for_window [title="wayland-boomer"] fullscreen enable
 
     #Keybinds for printscreen - Thanks to u/jratliff1    
     #Capture full screen
     bindsym Shift+Print exec grimshot copy output
     bindsym Shift+Alt+Print exec grimshot copy active
     bindsym Shift+Ctrl+Print exec grimshot copy area
+
+    
+   # bindsym XF86PowerOff exec notify-send 'Love you' 'Thanks for pressing that power button'
+   # bindsym XF86PowerOff exec $HOME/.config/rofi/powermenu.sh 
+   bindsym XF86PowerOff exec $HOME/.config/sway/scripts/power-button.sh
+	
+
 
 
 #
@@ -200,9 +223,9 @@ set $window $rofi_cmd -show window
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    #bindsym $mod+s layout stacking
+    #bindsym $mod+w layout tabbed
+    #bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -215,6 +238,9 @@ set $window $rofi_cmd -show window
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    # Sticky window
+    bindsym $mod+Shift+s sticky toggle
 #
 # Scratchpad:
 #
@@ -273,6 +299,8 @@ bindsym $mod+r mode "resize"
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR
 
 #important includes
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

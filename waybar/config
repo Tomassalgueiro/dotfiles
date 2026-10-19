@@ -1,6 +1,7 @@
 {
   "layer": "top",
   "position": "top",
+  "margin-bottom": 3,
   "margin-top": 0,
   "spacing" : 0,
   "height": 24,
@@ -10,6 +11,9 @@
 
 
   "modules-right": [
+    "sway/window",
+    "custom/vpn",
+    "custom/music",
     "network",
     "bluetooth",
     "backlight",
@@ -17,6 +21,7 @@
     "battery",
     "custom/separator",
     "clock",
+    "tray",
   ],
   
   "sway/workspaces": {
@@ -29,6 +34,16 @@
         },
     },
 
+  "sway/window": {
+	"format": "{title}",
+  	"max-length": 80,
+	"separate-outputs": false,
+	"rewrite": {
+		"(.+)": "$1 |",
+		"^$": "void |",
+	}
+  },
+
 
   "clock": {
     "timezone": "Europe/Lisbon",
@@ -39,10 +54,20 @@
     "on-click": "alacritty -e fish -c 'cal -y; exec fish'",
   },
 
+  "custom/music": {
+    "format": "{}",
+    "interval": 5,
+    "tooltip": false,
+    "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+    "on-click": "playerctl play-pause",
+    "exec": "$HOME/.config/waybar/scripts/playerctlstatus.sh"
+  },
+
+
   "network": {
-    "format-wifi": "󰤥 ",
-    "format-ethernet": "<span color='#9ece6a'>󰈁 </span>",
-    "format-disconnected": "<span color='#ff5555'>󰤮 </span>",
+    "format-wifi": "󰤥",
+    "format-ethernet": "<span color='#9ece6a'>󰈁</span>",
+    "format-disconnected": "<span color='#ff5555'>󰤮</span>",
     "interval": 5,
     "tooltip-format": "{essid} ({signalStrength}%)",
     "on-click": "alacritty -e nmtui"
@@ -61,14 +86,14 @@
         "format": "{icon}",	
 	"tooltip": true,
 	"tooltip-format": "Brightness: {percent}%",
-	"format-icons": ["󰃞 ", "󰃟 ", "󰃠 "]
+	"format-icons": ["󰃞", "󰃟", "󰃠"]
   },
   
   "pulseaudio": {
     "format": "{icon}",
-    "format-muted": " ",
+    "format-muted": "",
     "format-icons": {
-      "default": [" ", " ", " "]
+      "default": ["", "", ""]
     },
     "on-click": "pavucontrol",
     "tooltip": true,
@@ -95,7 +120,7 @@
 	"tooltip": true,
 	"tooltip-format": "Battery: {capacity}%",
 	"format-icons": ["󰁺","󰁼","󰁾","󰂀","󰂂"],
-	"format-icons-charging": [ ],
+	"format-icons-charging": {},
   },
 
   
@@ -111,17 +136,25 @@
   },
 
   "bluetooth": {
-    "format": "󰂲 ",
+    "format": "󰂲",
     "format-on": "{icon}",
     "format-off": "{icon}", 
     "format-connected":"{icon}",
     "format-icons":{
-        "on":"󰂯 ",
-        "off": "󰂲 ",
-        "connected": "󰂰 ",
+        "on":"󰂯",
+        "off": "󰂲",
+        "connected": "󰂰",
         },
     "on-click": "alacritty -e bluetui",
     "on-click-right": "~/.config/waybar/scripts/bluetooth_off_and_on.sh",
     "tooltip-format-connected":"{device_enumerate}"
   },
+
+    "custom/vpn": {
+    "format": "{}",
+    "interval": 2,
+    "on-click": "~/.config/waybar/scripts/tailscale_toggle.sh",
+    "exec": "~/.config/waybar/scripts/tailscale_status.sh",
+    "tooltip": false
+    }
 }

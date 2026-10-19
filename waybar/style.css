@@ -36,26 +36,39 @@
 }
 
 #pulseaudio,
-#backlight,
-#memory,
 #network,
 #battery,
-#custom-separator{
+#backlight,
+#memory,
+#custom-music,
+#custom-vpn,
+#custom-separator {
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;
   min-width: 0;
   border: none;
+}
+
+#custom-separator {
   margin-right: 10px;
 }
 
-#{
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  min-width: 0;
-  border: none;
+#network,
+#battery,
+#custom-vpn,
+#pulseaudio,
+#backlight {
+  margin-right: 8px;
+  margin-left: 8px;
 }
+
+#custom-music,
+#bluetooth {
+  margin-left: 8px;
+  margin-right: 3px;
+}
+
 
 #clock {
   color: #babbf1;
@@ -77,11 +90,14 @@
   color: #e74c3c;
 }
 
-
 #battery.charging {
   color: #2ecc71;
 }
 
 #battery.plugged {
   color: #2ecc71;
+}
+
+#tray {
+  margin-right: 8px;
 }
