@@ -36,8 +36,8 @@ position = { x = 540, y = 170 }
 # Iosveka NFM
 # JetBrainsMono NFM
 # CaskaydiaCove NFM
-normal = { family = "Iosevka NFM" , style = "Medium" }
-bold = { family = "Iosevka NFM", style = "Heavy" }
+normal = { family = "JetBrainsMono NFM" , style = "Medium" }
+bold = { family = "JetBrainsMono NFM", style = "Heavy" }
 size = 13
 offset = { x = 0, y = 0 }
 

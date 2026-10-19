@@ -14,6 +14,8 @@ return {
 		adaptive_size = true,
 	},
 	filters = {
+
+        	git_ignored = false,
 		dotfiles = true,
 	}
     }

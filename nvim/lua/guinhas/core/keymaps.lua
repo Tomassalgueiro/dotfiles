@@ -9,12 +9,8 @@ keymap.set('n', '<leader>', '<nop>')
 keymap.set('n', '<leader>w', ":write<CR>")
 keymap.set('n', '<leader>q', ":quit<CR>")
 
--- blackjack
-keymap.set('n', '<leader>bj', ":BlackJackNewGame<CR>")
-keymap.set('n', '<leader>bq', ":BlackJackQuit<CR>")
-
 -- open terminal on a split window
-keymap.set('n', '<leader>t', "<cmd>belowright split | terminal<CR>")
+keymap.set('n', '<leader>tt', "<cmd>belowright split | terminal<CR>")
 keymap.set('n', '<leader>ft', ":terminal<CR>")
 
 -- move half page down and up
@@ -47,3 +43,4 @@ keymap.set("n", "<C-n>", "<cmd>Ex<CR>", { desc = "Open file explorer" })
 keymap.set("n", "<leader>ts", "<cmd>Theme<CR>", { desc = "Select theme" })
 keymap.set("n", "<leader>tn", "<cmd>ThemeNext<CR>", { desc = "Next theme" })
 keymap.set("n", "<leader>tp", "<cmd>ThemePrev<CR>", { desc = "Previous theme" })
+

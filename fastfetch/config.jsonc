@@ -45,6 +45,12 @@
             "keyColor": "#5ba6c7", 
         },
         {
+            "type": "memory",
+            "key": "memory         ",
+	    "index": 0,
+            "keyColor": "#5ba6c7", 
+        },
+        {
             "type": "shell",
             "key": "unix shell     ",
             "keyColor": "#5ba6c7", 

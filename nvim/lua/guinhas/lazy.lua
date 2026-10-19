@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { import = "guinhas.plugins" },
+    { import = "guinhas.plugins.lsp" },
     },
     {
       change_detection = {

@@ -5,3 +5,4 @@ vim.o.guicursor = "n-v-c-i:block"
 vim.o.swapfile = false
 vim.tabstop = 2
 vim.o.wrap = false
+vim.opt.hlsearch = false
